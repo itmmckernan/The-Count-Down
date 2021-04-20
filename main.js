@@ -1,14 +1,37 @@
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+}
+
+const duration = parseInt(getUrlParam('duration', '7200000'));
+const hours = parseInt(getUrlParam('hours', '18'));
+const minutes = parseInt(getUrlParam('minutes', '0'));
+const seconds = parseInt(getUrlParam('seconds', '0'));
+
+const titleString = getUrlParam('title', 'TOK');
+document.getElementsByClassName('mainTitle')[0].innerText = titleString + ' time countdown';
+document.getElementsByClassName('mainTitle')[1].innerText =  'Time Left in ' + titleString + ':';
 
 function updateText(precision, index){
 	var topTextElement = document.getElementsByClassName('topTime')[index];
 	var bottomTextElement = document.getElementsByClassName('bottomTime')[index];
 	let endingDate = new Date();
 	if(precision)
-		endingDate.setHours(18, 0, 0, 0);
+		endingDate.setHours(hours, minutes, seconds, 0);
 	else
-		endingDate.setHours(18, 0, 0);
+		endingDate.setHours(hours, minutes, seconds);
 	let msLeft = endingDate.getTime()-Date.now();
-	let outputText = simplify_frac(msLeft, 7200000);
+	let outputText = simplify_frac(msLeft, duration);
 	topTextElement.innerText = outputText[0];
 	bottomTextElement.innerText = outputText[1];
 }
