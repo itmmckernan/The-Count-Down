@@ -1,5 +1,40 @@
 <title class="mainTitle">TOK time countdown</title>
 <h1 class="mainTitle">Time Left in TOK:</h1>
+<title>TOK time countdown </title>
+<style>body {
+  --text-color: #222;
+  --bkg-color: #fff;
+}
+body.dark-theme {
+  --text-color: #eee;
+  --bkg-color: #121212;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* defaults to dark theme */
+  body {
+    --text-color: #eee;
+    --bkg-color: #121212;
+  }
+  body.light-theme {
+    --text-color: #222;
+    --bkg-color: #fff;
+  }
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+h1,
+h2,
+p {
+  color: var(--text-color);
+}</style>
 <h2>Speedy:</h2>
 <div style="width: 12.5%; visibility: shown;" >
 <h2><center class="topTime">0</center></h2>
